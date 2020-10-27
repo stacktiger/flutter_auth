@@ -26,32 +26,32 @@ Future<void> signIn(BuildContext context) async {
     // 1. get an auth instance for your chosen social auth provider
     // For example, Twitter
     final auth = TwitterAuth(
-      clientId: 'your-client-id',
-      clientSecret: 'your-client-secret',
-      callbackUrl: 'your-callback-url',
+        clientId: 'your-client-id',
+        clientSecret: 'your-client-secret',
+        callbackUrl: 'your-callback-url',
     );
 
     // 2. call login() with your app's BuildContext as the required argument
     try {
-      FlutterAuthResult resp = await auth.login(context);
-      print('Successfully signed in with result $resp');
+        FlutterAuthResult resp = await auth.login(context);
+        print('Successfully signed in with result $resp');
     } on FlutterAuthException catch (e) {
-      switch (e.code) {
-        case FlutterAuthExceptionCode.cancelled:
-          print('Sign-in process was cancelled by user: ${e.toString()}');
-          break;
-        case FlutterAuthExceptionCode.network:
-          print('A network exception was thrown: ${e.toString()}');
-          break;
-        case FlutterAuthExceptionCode.login:
-          print(
-              'A exception occurred during an sign-in attempt: ${e.toString()}');
-          break;
-      }
+        switch (e.code) {
+            case FlutterAuthExceptionCode.cancelled:
+                print('Sign-in process was cancelled by user: ${e.toString()}');
+                break;
+            case FlutterAuthExceptionCode.network:
+                print('A network exception was thrown: ${e.toString()}');
+                break;
+            case FlutterAuthExceptionCode.login:
+                print(
+                    'A exception occurred during an sign-in attempt: ${e.toString()}');
+                break;
+        }
     } catch (e) {
-      print('A unexpected exception occurred during an sign-in attempt $e');
+        print('A unexpected exception occurred during an sign-in attempt $e');
     }
-   }
+}
 ```
 
 

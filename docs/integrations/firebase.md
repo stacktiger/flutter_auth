@@ -12,7 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 Future<UserCredential> signInWithTwitter() async {
   final FlutterAuth twitterAuth = TwitterAuth(
     consumerKey: '<your consumer key>',
-    consumerSecret:' <your consumer secret>'
+    consumerSecret: '<your consumer secret>'
   );
 
   final FlutterAuthResult result = twitterAuth.login(context);
