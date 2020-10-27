@@ -1,0 +1,22 @@
+name: flutter_auth_core
+description: A new Dart plugin project.
+version: 0.0.1
+homepage: https://github.com/StackTiger/flutter_auth/tree/master/packages/flutter_auth
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  quiver: ">=2.0.0 <3.0.0"
+  meta: ^1.1.8
+  url_launcher: ^5.5.0
+  http: ^0.12.2
+  oauth1: ^1.0.4
+  flutter_webview_plugin: ^0.3.11
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.1.1

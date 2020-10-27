@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "461084019003",
+    "firebase_url": "https://stacktiger-flutter.firebaseio.com",
+    "project_id": "stacktiger-flutter",
+    "storage_bucket": "stacktiger-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461084019003:android:bbc2f6b8afa2146dd70f1e",
+        "android_client_info": {
+          "package_name": "io.stacktiger.plugins.twitter_auth_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461084019003-k8mr4jml9gm5c5jpqeqqu3je2o6fkf0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZIGSoGFz3_DX1SytTkFH6I9140l8aAO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461084019003-k8mr4jml9gm5c5jpqeqqu3je2o6fkf0h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

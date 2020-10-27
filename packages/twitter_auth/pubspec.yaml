@@ -1,0 +1,23 @@
+name: twitter_auth
+description: A new flutter plugin project.
+version: 0.0.1
+homepage: https://github.com/StackTiger/flutter_auth/tree/master/packages/twitter_auth
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.10.0"
+
+dependencies:
+  flutter_auth_core: ^0.0.0
+  flutter:
+    sdk: flutter
+  quiver: ">=2.0.0 <3.0.0"
+  meta: ^1.1.8
+  http: ^0.12.2
+  oauth1: ^1.0.4
+  xml_parser: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.1.1

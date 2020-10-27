@@ -1,0 +1,26 @@
+name: github_auth_example
+description: Demonstrates how to use the github_auth plugin.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  github_auth:
+    path: ../
+  flutter_signin_button: ^1.1.0
+  fluttertoast: ^7.1.1
+
+dependency_overrides:
+  flutter_auth_core:
+    path: ../../flutter_auth_core
+
+dev_dependencies:
+  pedantic: ^1.8.0
+  flutter_driver:
+    sdk: flutter
+  test: any
+
+flutter:
+  uses-material-design: true
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"

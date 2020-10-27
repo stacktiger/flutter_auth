@@ -1,0 +1,29 @@
+name: flutter_auth_plugins
+
+packages:
+  - packages/**
+
+scripts:
+  postbootstrap: tuneup --version || pub global activate tuneup
+  postclean: melos exec -- rm -rf ./build ./android/.gradle ./ios/.symlinks ./ios/Pods ./android/.idea ./.idea
+
+  # Formats the code of all packages (Java, Objective-C, and Dart).
+  #  - Requires `flutter_plugin_tools` (`pub global activate flutter_plugin_tools`).
+  #  - Requires `git`.
+  #  - Requires `clang-format` (can be installed via Brew on MacOS).
+  format: pub global run flutter_plugin_tools format
+
+  # Analyze the project for Dart analysis issues.
+  #  - Requires `pub global activate tuneup`.
+  analyze: >
+    melos exec -c 1 --fail-fast -- \
+      pub global run tuneup check
+  
+  # Run standard flutter tests in all packages that have them.
+  test: >
+    melos exec -c 1 --fail-fast --dir-exists=test --ignore="*example*" --ignore="*web*" -- \
+      flutter test
+  dartdoc: dartdoc --exclude 'dart:async,dart:collection,dart:convert,dart:core,dart:developer,dart:io,dart:isolate,dart:math,dart:typed_data,dart:ui'
+
+dev_dependencies:
+  pedantic: ^1.8.0
