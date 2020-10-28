@@ -79,6 +79,7 @@ class FlutterAuth {
   }
 
   @visibleForTesting
+  // ignore: public_member_api_docs
   FlutterAuthException convertWebviewErrorToException(dynamic result) {
     if (result == null) {
       return FlutterAuthException(
@@ -95,6 +96,11 @@ class FlutterAuth {
           message: FlutterAuthExceptionMessage.unknownHttp,
           details: {'code:': result.code, 'url': result.url});
     } else if (result is Exception) {
+      return FlutterAuthException(
+          code: FlutterAuthExceptionCode.login,
+          message: FlutterAuthExceptionMessage.unknown,
+          details: result);
+    } else {
       return FlutterAuthException(
           code: FlutterAuthExceptionCode.login,
           message: FlutterAuthExceptionMessage.unknown,

@@ -87,7 +87,7 @@ void main() {
       final result = await testFlutterAuth.openLoginPageWithWebview(
           kMockBuildContext, 'http://url.com');
 
-      expect(result, isA<FlutterAuth>());
+      expect(result, isA<FlutterAuthResult>());
       expect(result.token, 'test');
     });
 
