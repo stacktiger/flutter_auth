@@ -1,3 +1,11 @@
+## 0.0.3
+
+- **FEAT**: Export FlutterAuth class
+
+## 0.0.2
+
+- **DOCS**: Update meta
+
 ## 0.0.1
 
-* Initial Open Source release.
+- **FEAT**: Initial Open Source release.

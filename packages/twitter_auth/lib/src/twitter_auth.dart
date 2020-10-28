@@ -9,7 +9,7 @@ import 'utils/constants.dart';
 import 'dart:developer' as developer;
 
 /// The entry point to use the methods in the Twitter Auth plugin
-class TwitterAuth extends FlutterAuthLogin {
+class TwitterAuth extends FlutterAuth {
   /// The client id of the Twitter App
   final String clientId;
 

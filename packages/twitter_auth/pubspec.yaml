@@ -1,6 +1,6 @@
 name: twitter_auth
 description: A Flutter plugin to sign in with Twitter on Android & iOS.
-version: 0.0.1
+version: 0.0.3
 homepage: https://github.com/StackTiger/flutter_auth/tree/master/packages/twitter_auth
 
 environment:

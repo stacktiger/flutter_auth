@@ -9,15 +9,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_auth_core/flutter_auth_core.dart';
 
 // ignore: public_member_api_docs
-class FlutterAuthLogin {
+class FlutterAuth {
   final String clientId;
   final String clientSecret;
   final String callbackUrl;
   final bool clearCache;
   final String userAgent;
 
-  /// Returns an instance of [FlutterAuthLogin].
-  FlutterAuthLogin(
+  /// Returns an instance of [FlutterAuth].
+  FlutterAuth(
       {@required this.clientId,
       @required this.clientSecret,
       @required this.callbackUrl,
@@ -78,6 +78,7 @@ class FlutterAuthLogin {
             )));
   }
 
+  @visibleForTesting
   FlutterAuthException convertWebviewErrorToException(dynamic result) {
     if (result == null) {
       return FlutterAuthException(
