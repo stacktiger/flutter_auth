@@ -18,7 +18,9 @@ flutter_auth is a family of flutter plugins that provides an interface to sign-i
 
 ## Example App
 
-Each plugin has their own example project that demonstrates their basic usage.
+Each plugin has their own example project that demonstrates their basic usage. Or, there's a standalone example app on [GitHub](https://github.com/stacktiger/flutter_auth_example) that you can check out.
+
+<img src="https://cdn.stacktiger.co/images/flutter_auth/flutter_auth_example_app.jpg" alt="drawing" width="200"/>
 
 ## Installation
 
@@ -62,16 +64,18 @@ If there was an error, a `FlutterAuthException` will be thrown. A `FlutterAuthEx
 try {
     final resp = await auth.login(context);
 } on FlutterAuthException catch(e) {
-    case FlutterAuthExceptionCode.cancelled:
-        print('Sign-in process was cancelled by user: ${e.toString()}');
-        break;
-    case FlutterAuthExceptionCode.network:
-        print('A network exception was thrown: ${e.toString()}');
-        break;
-    case FlutterAuthExceptionCode.login:
-        print(
-            'An exception occurred during a sign-in attempt: ${e.toString()}');
-        break;
+    switch(e.code) {
+        case FlutterAuthExceptionCode.cancelled:
+            print('Sign-in process was cancelled by user: ${e.toString()}');
+            break;
+        case FlutterAuthExceptionCode.network:
+            print('A network exception was thrown: ${e.toString()}');
+            break;
+        case FlutterAuthExceptionCode.login:
+            print(
+                'An exception occurred during a sign-in attempt: ${e.toString()}');
+            break;
+     };
 }
 ```
 
