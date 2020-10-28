@@ -108,6 +108,7 @@ class TwitterAuth extends FlutterAuth {
   /// If successful, a token and secret will be returned.
   ///
   /// If an error occurs, the status will be set to [FlutterAuthStatus.error] along with an errorMessage.
+  @override
   Future<FlutterAuthResult> login(BuildContext context) async {
     try {
       Credentials _tempCredentials = await getTemporaryToken();

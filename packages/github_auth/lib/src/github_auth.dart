@@ -102,6 +102,7 @@ class GithubAuth extends FlutterAuth {
     }
   }
 
+  @override
   Future<FlutterAuthResult> login(BuildContext context) async {
     String url = _generateAuthorizedUrl();
 

@@ -42,6 +42,11 @@ class FlutterAuth {
     return openLoginPageWithWebview(context, url);
   }
 
+  // ignore: public_member_api_docs
+  Future<FlutterAuthResult> login(BuildContext context) async {
+    throw UnimplementedError('login() has not been implemented');
+  }
+
   @visibleForTesting
   // ignore: public_member_api_docs
   Future<FlutterAuthResult> openLoginPageWithWebview(
