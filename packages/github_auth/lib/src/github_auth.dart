@@ -10,7 +10,7 @@ import 'dart:developer' as developer;
 import 'utils/constants.dart';
 
 /// The entry point to use the methods in the Github Auth plugin
-class GithubAuth extends FlutterAuthLogin {
+class GithubAuth extends FlutterAuth {
   /// The client id of the Github App
   final String clientId;
 

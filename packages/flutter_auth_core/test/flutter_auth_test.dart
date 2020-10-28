@@ -14,26 +14,26 @@ const kAuthorizedResultUrl = 'test-authorized-result-url';
 BuildContext kMockBuildContext = MockBuildContext();
 
 void main() {
-  TestFlutterAuthLogin testFlutterAuthLogin;
+  TestFlutterAuth testFlutterAuth;
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    testFlutterAuthLogin = TestFlutterAuthLogin();
+    testFlutterAuth = TestFlutterAuth();
   });
 
   group('constructor', () {
     test('args are set correctly', () {
-      expect(testFlutterAuthLogin, isA<FlutterAuthLogin>());
+      expect(testFlutterAuth, isA<FlutterAuth>());
 
-      expect(testFlutterAuthLogin.callbackUrl, kCallbackUrl);
-      expect(testFlutterAuthLogin.clientId, kClientId);
-      expect(testFlutterAuthLogin.clientSecret, kClientSecret);
-      expect(testFlutterAuthLogin.clearCache, kClearCache);
-      expect(testFlutterAuthLogin.userAgent, kUserAgent);
+      expect(testFlutterAuth.callbackUrl, kCallbackUrl);
+      expect(testFlutterAuth.clientId, kClientId);
+      expect(testFlutterAuth.clientSecret, kClientSecret);
+      expect(testFlutterAuth.clearCache, kClearCache);
+      expect(testFlutterAuth.userAgent, kUserAgent);
     });
 
     test('defaults are correct', () {
-      final flutterAuthLoginWithDefaults = FlutterAuthLogin(
+      final flutterAuthLoginWithDefaults = FlutterAuth(
           callbackUrl: kCallbackUrl,
           clientId: kClientId,
           clientSecret: kClientSecret);
@@ -43,7 +43,7 @@ void main() {
 
     test('throws AssertionError if clientId is null', () {
       try {
-        FlutterAuthLogin(
+        FlutterAuth(
             callbackUrl: kCallbackUrl,
             clientId: null,
             clientSecret: kClientSecret);
@@ -54,7 +54,7 @@ void main() {
 
     test('throws AssertionError if clientSecret is null', () {
       try {
-        FlutterAuthLogin(
+        FlutterAuth(
             callbackUrl: kCallbackUrl, clientId: kClientId, clientSecret: null);
       } on AssertionError catch (e) {
         expect(e.message, 'ClientSecret may not be null or empty.');
@@ -63,7 +63,7 @@ void main() {
 
     test('throws AssertionError if callbackUrl is null', () {
       try {
-        FlutterAuthLogin(
+        FlutterAuth(
           callbackUrl: null,
           clientId: kClientId,
           clientSecret: kClientSecret,
@@ -76,7 +76,7 @@ void main() {
 
   test('loginComplete() throws an UnimplementedError ', () {
     try {
-      testFlutterAuthLogin.loginComplete(Uri.parse('mock'));
+      testFlutterAuth.loginComplete(Uri.parse('mock'));
     } on UnimplementedError catch (e) {
       expect(e.message, 'loginComplete() has not been implemented');
     }
@@ -84,10 +84,10 @@ void main() {
 
   group('openLoginPageWithWebview() ', () {
     test('returns a [FlutterAuthResult]', () async {
-      final result = await testFlutterAuthLogin.openLoginPageWithWebview(
+      final result = await testFlutterAuth.openLoginPageWithWebview(
           kMockBuildContext, 'http://url.com');
 
-      expect(result, isA<FlutterAuthResult>());
+      expect(result, isA<FlutterAuth>());
       expect(result.token, 'test');
     });
 
@@ -103,22 +103,21 @@ void main() {
 
     test('throws AssertionError if context is null', () {
       expect(
-          () => testFlutterAuthLogin.openLoginPageWithWebview(
-              null, 'http://url.com'),
+          () =>
+              testFlutterAuth.openLoginPageWithWebview(null, 'http://url.com'),
           throwsAssertionError);
     });
 
     test('throws AssertionError if url is null', () {
       expect(
-          () => testFlutterAuthLogin.openLoginPageWithWebview(
-              kMockBuildContext, null),
+          () =>
+              testFlutterAuth.openLoginPageWithWebview(kMockBuildContext, null),
           throwsAssertionError);
     });
 
     test('throws AssertionError if url is empty', () {
       expect(
-          () => testFlutterAuthLogin.openLoginPageWithWebview(
-              kMockBuildContext, ''),
+          () => testFlutterAuth.openLoginPageWithWebview(kMockBuildContext, ''),
           throwsAssertionError);
     });
   });
@@ -126,8 +125,8 @@ void main() {
 
 class MockBuildContext extends Mock implements BuildContext {}
 
-class TestFlutterAuthLogin extends FlutterAuthLogin {
-  TestFlutterAuthLogin()
+class TestFlutterAuth extends FlutterAuth {
+  TestFlutterAuth()
       : super(
             callbackUrl: kCallbackUrl,
             clientId: kClientId,
