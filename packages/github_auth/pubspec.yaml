@@ -1,12 +1,11 @@
 name: github_auth
-description: A new flutter plugin project.
+description: A Flutter plugin to sign in with GitHub on Android & iOS.
 version: 0.0.1
 homepage: https://github.com/StackTiger/flutter_auth/tree/master/packages/github_auth
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
   flutter: ">=1.10.0"
-  flutter_auth_buttons: 0.10.0
 
 dependencies:
   flutter_auth_core: ^0.0.0

@@ -2,34 +2,35 @@
 name: "flutter_auth_plugins"
 publish_to: "none"
 version: "0.0.0"
-dependencies: 
-  flutter_auth_core: 
+dependencies:
+  flutter_auth_core:
     path: "packages/flutter_auth_core"
-  github_auth: 
+  github_auth:
     path: "packages/github_auth"
-  github_auth_example: 
+  github_auth_example:
     path: "packages/github_auth/example"
-  twitter_auth: 
+  twitter_auth:
     path: "packages/twitter_auth"
-  twitter_auth_example: 
+  twitter_auth_example:
     path: "packages/twitter_auth/example"
-dependency_overrides: 
-  flutter_auth_core: 
+dependency_overrides:
+  flutter_auth_core:
     path: "packages/flutter_auth_core"
-  github_auth: 
+  github_auth:
     path: "packages/github_auth"
-  github_auth_example: 
+  github_auth_example:
     path: "packages/github_auth/example"
-  twitter_auth: 
+  twitter_auth:
     path: "packages/twitter_auth"
-  twitter_auth_example: 
+  twitter_auth_example:
     path: "packages/twitter_auth/example"
-dev_dependencies: 
+dev_dependencies:
+  melos: ^0.3.9
   mockito: "^4.1.1"
   pedantic: "^1.8.0"
   test: "any"
-  flutter_driver: 
+  flutter_driver:
     sdk: "flutter"
-  flutter_test: 
+  flutter_test:
     sdk: "flutter"
-environment: 
+environment:

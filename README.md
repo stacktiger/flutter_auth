@@ -95,12 +95,6 @@ Please file flutter_auth specific issues, bugs, or feature requests in our [issu
 
 Plugin issues that are not specific to flutter_auth can be filed in the [Flutter issue tracker](https://github.com/flutter/flutter/issues/new).
 
-## Contributing
-
-If you wish to contribute a change to any of the existing plugins in this repo,
-please review our [contribution guide](https://github.com/StackTiger/flutter_auth/blob/master/CONTRIBUTING.md)
-and open a [pull request](https://github.com/StackTiger/flutter_auth/pulls).
-
 ## Maintainers
 
 This repository is maintained by [StackTiger](https://stacktiger.co/) 🐯 
