@@ -51,7 +51,7 @@ final auth = GithubAuth(
 final resp = await auth.login(context);
 
 // If successful, an instance of FlutterAuthResult is returned with a token and a secret.
-print('Successfully logged in $resp');
+print("Successfully logged in $resp");
 ```
 
 # Error Handling
