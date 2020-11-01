@@ -70,7 +70,7 @@ try {
 
             print('A GitHub API Error occurred with code ${apiError.code}, message ${apiError.message} and uri ${apiError.uri}');
         } else {
-            print({${e.details});
+            print('${e.details}');
         }
         break;
 }
