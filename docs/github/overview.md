@@ -50,7 +50,7 @@ final auth = GithubAuth(
 // BuildContext is a required arg to open the webview:
 final resp = await auth.login(context);
 
-// If successful, an instance of `FlutterAuthResult` is returned with a token and a secret.
+// If successful, an instance of FlutterAuthResult is returned with a token and a secret.
 print('Successfully logged in $resp');
 ```
 
