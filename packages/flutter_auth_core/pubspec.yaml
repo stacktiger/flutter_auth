@@ -1,6 +1,6 @@
 name: flutter_auth_core
 description: A common interface for twitter_auth and github_auth plugins.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/StackTiger/flutter_auth/tree/master/packages/flutter_auth_core
 
 environment:

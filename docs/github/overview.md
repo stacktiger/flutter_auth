@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-First, you will need to register a [OAuth App](hhttps://github.com/settings/developers/).
+First, you will need to register an [OAuth App](hhttps://github.com/settings/developers/).
 
 ![GitHub Developer Account](../assets/img/github-auth-account-1.png ':size=400')
 
@@ -49,8 +49,7 @@ final auth = GithubAuth(
 ```dart
 // BuildContext is a required arg to open the webview:
 final resp = await auth.login(context);
-
-// If successful, an instance of FlutterAuthResult is returned with a token and a secret.
+// If successful, an instance of FlutterAuthResult is returned.
 print("Successfully logged in $resp");
 ```
 

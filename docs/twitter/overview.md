@@ -48,9 +48,8 @@ final auth = TwitterAuth(
 ```dart
 // BuildContext is a required arg to open the webview:
 final resp = await auth.login(context);
-
-// If successful, an instance of `FlutterAuthResult` is returned with a token and a secret.
-print('Successfully logged in $resp');
+// If successful, an instance of FlutterAuthResult is returned.
+print("Successfully logged in $resp");
 ```
 
 # Error Handling
@@ -69,7 +68,7 @@ try {
 
             print('A Twitter API Error occurred with code ${apiError.code} and message ${apiError.message}');
         } else {
-            print({${e.details});
+            print('${e.details}');
         }
         break;
 }

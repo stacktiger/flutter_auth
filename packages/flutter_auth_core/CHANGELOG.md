@@ -1,3 +1,7 @@
+## 0.0.4
+
+- **DOCS**: update description
+
 ## 0.0.3
 
 - **FEAT**: export FlutterAuth class
