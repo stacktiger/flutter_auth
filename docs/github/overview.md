@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-First, you will need to register an [OAuth App](hhttps://github.com/settings/developers/).
+First, you will need to register an [OAuth App](https://github.com/settings/developers/).
 
 ![GitHub Developer Account](../assets/img/github-auth-account-1.png ':size=400')
 
