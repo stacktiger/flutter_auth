@@ -27,6 +27,9 @@ class TwitterAuth extends FlutterAuth {
   /// The user agent to be used for the Webview
   final String userAgent;
 
+  /// How display sign in page in a webview.
+  final bool modal;
+
   ClientCredentials _clientCredentials;
 
   @visibleForTesting
@@ -45,7 +48,8 @@ class TwitterAuth extends FlutterAuth {
       @required this.clientSecret,
       @required this.callbackUrl,
       this.clearCache = false,
-      this.userAgent}) {
+      this.userAgent,
+      this.modal = false}) {
     assert(clientId != null && clientId.isNotEmpty,
         'Consumer key may not be null or empty.');
     assert(clientSecret != null && clientSecret.isNotEmpty,

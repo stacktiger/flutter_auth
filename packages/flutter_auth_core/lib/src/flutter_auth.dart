@@ -15,6 +15,7 @@ class FlutterAuth {
   final String callbackUrl;
   final bool clearCache;
   final String userAgent;
+  final bool modal;
 
   /// Returns an instance of [FlutterAuth].
   FlutterAuth(
@@ -22,7 +23,8 @@ class FlutterAuth {
       @required this.clientSecret,
       @required this.callbackUrl,
       this.clearCache = false,
-      this.userAgent}) {
+      this.userAgent,
+      this.modal = false}) {
     assert(clientId != null && clientId.isNotEmpty,
         'ClientId may not be null or empty.');
     assert(clientSecret != null && clientSecret.isNotEmpty,
@@ -75,11 +77,13 @@ class FlutterAuth {
   // ignore: public_member_api_docs
   Future<dynamic> navigateToWebview(BuildContext context, String url) async {
     return Navigator.of(context).push(MaterialPageRoute(
+        fullscreenDialog: modal,
         builder: (context) => FlutterAuthWebview(
               url: url,
               redirectUrl: callbackUrl,
               userAgent: userAgent,
               clearCache: clearCache,
+              modal: modal,
             )));
   }
 

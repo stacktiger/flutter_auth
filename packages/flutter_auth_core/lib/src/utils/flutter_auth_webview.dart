@@ -10,6 +10,7 @@ class FlutterAuthWebview extends StatefulWidget {
   final bool clearCache;
   final String title;
   final String userAgent;
+  final bool modal;
 
   // ignore: public_member_api_docs
   const FlutterAuthWebview(
@@ -18,6 +19,7 @@ class FlutterAuthWebview extends StatefulWidget {
       @required this.redirectUrl,
       this.userAgent,
       this.clearCache = true,
+      this.modal = false,
       this.title = ""})
       : super(key: key);
 
@@ -70,6 +72,7 @@ class _FlutterAuthWebviewState extends State<FlutterAuthWebview> {
     return WebviewScaffold(
       url: widget.url,
       appBar: new AppBar(
+        leading: widget.modal ? backButton(context) : null,
         title: Text(widget.title),
       ),
       userAgent: widget.userAgent ?? _userAgentMacOSX,
@@ -80,6 +83,13 @@ class _FlutterAuthWebviewState extends State<FlutterAuthWebview> {
       clearCache: widget.clearCache,
       clearCookies: widget.clearCache,
       resizeToAvoidBottomInset: true,
+    );
+  }
+
+  Widget backButton(BuildContext context) {
+    IconButton(
+      icon: Icon(Icons.close),
+      onPressed: () => Navigator.of(context).pop(),
     );
   }
 
