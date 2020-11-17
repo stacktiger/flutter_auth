@@ -61,6 +61,14 @@ class TwitterAuth extends FlutterAuth {
 
     final oauthToken = queryParameters[kOauthTokenConstant];
     final oauthVerifier = queryParameters[kOauthVerifierConstant];
+    final denied = queryParameters[kOauthDeniedConstant];
+
+    if (denied != null) {
+      throw FlutterAuthException(
+          code: FlutterAuthExceptionCode.cancelled,
+          message: FlutterAuthExceptionMessage.cancelled);
+    }
+
     if (oauthToken == null || oauthToken.isEmpty) {
       throw FlutterAuthException(
           code: FlutterAuthExceptionCode.login, message: 'oauth token is null');
