@@ -50,6 +50,10 @@ class App extends StatelessWidget {
           showToast(
               'A exception occurred during an sign-in attempt', Colors.red);
           break;
+        case FlutterAuthExceptionCode.denied:
+          print('Sign-in process was denied: ${e.toString()}');
+          showToast('Sign-in process was denied', Colors.red);
+          break;
       }
     } catch (e) {
       print('A exception occurred during an sign-in attempt $e');
