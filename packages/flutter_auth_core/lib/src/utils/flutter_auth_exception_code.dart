@@ -8,4 +8,7 @@ enum FlutterAuthExceptionCode {
 
   /// Indicates a network error occurred.
   network,
+
+  /// The request was denied.
+  denied,
 }

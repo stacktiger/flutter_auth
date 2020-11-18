@@ -65,8 +65,8 @@ class TwitterAuth extends FlutterAuth {
 
     if (denied != null) {
       throw FlutterAuthException(
-          code: FlutterAuthExceptionCode.cancelled,
-          message: FlutterAuthExceptionMessage.cancelled);
+          code: FlutterAuthExceptionCode.denied,
+          message: 'The request was denied.');
     }
 
     if (oauthToken == null || oauthToken.isEmpty) {
