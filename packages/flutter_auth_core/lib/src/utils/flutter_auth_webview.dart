@@ -71,8 +71,8 @@ class _FlutterAuthWebviewState extends State<FlutterAuthWebview> {
   Widget build(BuildContext context) {
     return WebviewScaffold(
       url: widget.url,
-      appBar: new AppBar(
-        leading: widget.modal ? backButton(context) : null,
+      appBar: AppBar(
+        leading: widget.modal ? _backButton(context) : null,
         title: Text(widget.title),
       ),
       userAgent: widget.userAgent ?? _userAgentMacOSX,
@@ -86,9 +86,12 @@ class _FlutterAuthWebviewState extends State<FlutterAuthWebview> {
     );
   }
 
-  Widget backButton(BuildContext context) {
-    IconButton(
-      icon: Icon(Icons.close),
+  Widget _backButton(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.close,
+        color: Theme.of(context).accentColor,
+      ),
       onPressed: () => Navigator.of(context).pop(),
     );
   }
