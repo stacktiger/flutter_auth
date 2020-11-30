@@ -52,6 +52,10 @@ class App extends StatelessWidget {
           print('A network exception was thrown: ${e.toString()}');
           showToast('A network exception was thrown', Colors.red);
           break;
+        case FlutterAuthExceptionCode.denied:
+          print('Sign-in process was denied: ${e.toString()}');
+          showToast('Sign-in process was denied', Colors.red);
+          break;
       }
     } catch (e) {
       print('Exception $e');
