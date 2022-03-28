@@ -1,8 +1,8 @@
 // https://developer.twitter.com/ja/docs/basics/response-codes
 
 class TwitterAPIError {
-  String code;
-  String message;
+  String? code;
+  String? message;
 
   TwitterAPIError({this.code, this.message});
 

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_core/flutter_auth_core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
 BuildContext kMockBuildContext = MockBuildContext();
-MockHttpClient kClient;
+late MockHttpClient kClient;
 
 const kCallbackUrl = 'githubsdk://';
 const kClientId = 'test-consumer-key';
@@ -21,7 +19,7 @@ const kToken = 'test-token';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  GithubAuth githubAuth;
+  late GithubAuth githubAuth;
 
   setUp(() {
     githubAuth = TestGithubAuth();
@@ -85,9 +83,9 @@ void main() {
   });
 
   group('loginComplete()', () {
-    String mockCode;
-    String mockAccessToken;
-    Uri mockAuthorizedResultUrl;
+    late String mockCode;
+    late String mockAccessToken;
+    late Uri mockAuthorizedResultUrl;
 
     setUp(() {
       mockCode = 'test-code';
@@ -98,7 +96,7 @@ void main() {
 
     test('return a [FlutterAuthResult] with [FlutterAuthStatus] success',
         () async {
-      when(kClient.post(kApiEndpointAccessToken,
+      when(kClient.post(Uri.parse(kApiEndpointAccessToken),
               headers: anyNamed('headers'), body: anyNamed('body')))
           .thenAnswer((_) async =>
               http.Response('{"access_token": "$mockAccessToken"}', 200));
@@ -128,7 +126,7 @@ void main() {
     test(
         'returns a [FlutterAuthResult] with [FlutterAuthStatus] error if statusCode != 200',
         () async {
-      when(kClient.post(kApiEndpointAccessToken,
+      when(kClient.post(Uri.parse(kApiEndpointAccessToken),
               headers: anyNamed('headers'), body: anyNamed('body')))
           .thenAnswer((_) async => http.Response('mock error', 400));
 
@@ -145,7 +143,7 @@ void main() {
     test(
         'return a [FlutterAuthResult] with FlutterAuthStatus.error if [accessToken] is null ',
         () async {
-      when(kClient.post(kApiEndpointAccessToken,
+      when(kClient.post(Uri.parse(kApiEndpointAccessToken),
               headers: anyNamed('headers'), body: anyNamed('body')))
           .thenAnswer((_) async => http.Response('mock error', 400));
 

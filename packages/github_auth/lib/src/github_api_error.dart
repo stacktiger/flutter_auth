@@ -1,9 +1,9 @@
 // https://docs.github.com/en/free-pro-team@latest/developers/apps/authorizing-oauth-apps#error-codes-for-the-device-flow
 
 class GithubAPIError {
-  String code;
-  String message;
-  String uri;
+  String? code;
+  String? message;
+  String? uri;
 
   GithubAPIError({this.code, this.message, this.uri});
 

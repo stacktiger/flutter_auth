@@ -13,14 +13,15 @@ dynamic parseLoginException(error) {
 
   FlutterAuthException exception;
   if (error is SocketException) {
-    if (error.message != null && error.message.contains("Failed host lookup")) {
+    if (error.message.contains("Failed host lookup")) {
       exception = FlutterAuthException(
           code: FlutterAuthExceptionCode.network,
           message: 'No network',
           details: error.toString());
     }
-  } else if (error is StateError) {
-    final apiError = parseTwitterApiError(error);
+  }
+  if (error is StateError) {
+    final apiError = parseTwitterApiError(error as StateError);
 
     exception = FlutterAuthException(
       code: FlutterAuthExceptionCode.login,
@@ -38,7 +39,7 @@ dynamic parseLoginException(error) {
 }
 
 TwitterAPIError parseTwitterApiError(StateError error) {
-  List<XmlElement> errors = XmlElement.parseString(
+  List<XmlElement>? errors = XmlElement.parseString(
     error.message,
     returnElementsNamed: ['error'],
     start: 0,

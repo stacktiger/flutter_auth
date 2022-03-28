@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_core/flutter_auth_core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,10 +14,10 @@ const kToken = 'test-token';
 const kAuthorizedResultUrl = 'test-authorized-result-url';
 
 BuildContext kMockBuildContext = MockBuildContext();
-MockOAuth1 kOauth1;
+late MockOAuth1 kOauth1;
 
 void main() {
-  TwitterAuth twitterAuth;
+  late TwitterAuth twitterAuth;
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -63,9 +61,10 @@ void main() {
   });
 
   test('login()', () async {
-    when(kOauth1.requestTemporaryCredentials(any)).thenAnswer((_) {
+    when(kOauth1.requestTemporaryCredentials('oob')).thenAnswer((_) {
       return Future<AuthorizationResponse>.value(
-          AuthorizationResponse(Credentials('x', 'x'), null));
+        AuthorizationResponse(Credentials('x', 'x'), {}),
+      );
     });
 
     final result = await twitterAuth.login(kMockBuildContext);
@@ -77,10 +76,10 @@ void main() {
   });
 
   group('loginComplete()', () {
-    String mockOauthToken;
-    String mockOauthVerifier;
-    String mockOauthSecret;
-    Uri mockAuthorizedResultUrl;
+    late String mockOauthToken;
+    late String mockOauthVerifier;
+    late String mockOauthSecret;
+    late Uri mockAuthorizedResultUrl;
 
     setUp(() {
       mockOauthToken = 'test-oauth-token';
@@ -92,15 +91,17 @@ void main() {
 
     test('return a [FlutterAuthResult] with [FlutterAuthStatus] success',
         () async {
-      when(kOauth1.requestTokenCredentials(any, any)).thenAnswer((_) =>
-          Future.value(AuthorizationResponse(
-              Credentials(mockOauthToken, mockOauthSecret), null)));
+      when(kOauth1.requestTokenCredentials(
+              Credentials(any.toString(), any.toString()), any.toString()))
+          .thenAnswer((_) => Future.value(AuthorizationResponse(
+              Credentials(mockOauthToken, mockOauthSecret), {})));
 
       final result = await twitterAuth.loginComplete(mockAuthorizedResultUrl);
 
-      final capturedCredentials =
-          verify(kOauth1.requestTokenCredentials(captureAny, mockOauthVerifier))
-              .captured[0] as Credentials;
+      final capturedCredentials = verify(kOauth1.requestTokenCredentials(
+              Credentials(captureAny.toString(), captureAny.toString()),
+              mockOauthVerifier))
+          .captured[0] as Credentials;
 
       expect(capturedCredentials.token, mockOauthToken);
       expect(capturedCredentials.tokenSecret, '');
@@ -112,14 +113,16 @@ void main() {
     test(
         'returns a [FlutterAuthResult] with [FlutterAuthStatus] error if [requestTokenCredentials] errors',
         () async {
-      when(kOauth1.requestTokenCredentials(any, any))
+      when(kOauth1.requestTokenCredentials(
+              Credentials(any.toString(), any.toString()), any.toString()))
           .thenAnswer((_) => new Future.error('mock error'));
 
       try {
         await twitterAuth.loginComplete(mockAuthorizedResultUrl);
       } on FlutterAuthException catch (e) {
-        final capturedCredentials = verify(
-                kOauth1.requestTokenCredentials(captureAny, mockOauthVerifier))
+        final capturedCredentials = verify(kOauth1.requestTokenCredentials(
+                Credentials(captureAny.toString(), captureAny.toString()),
+                mockOauthVerifier))
             .captured[0] as Credentials;
 
         expect(capturedCredentials.token, mockOauthToken);
@@ -143,7 +146,8 @@ void main() {
         expect(e.code, FlutterAuthExceptionCode.login);
         expect(e.message, 'oauth token is null');
 
-        verifyNever(kOauth1.requestTokenCredentials(any, any));
+        verifyNever(kOauth1.requestTokenCredentials(
+            Credentials(any.toString(), any.toString()), any.toString()));
       } catch (_) {}
     });
   });
@@ -152,8 +156,16 @@ void main() {
 class MockBuildContext extends Mock implements BuildContext {}
 
 class MockOAuth1 extends Mock implements oauth1.Authorization {
+  Platform _platform = Platform(
+      'https://api.twitter.com/oauth/request_token',
+      'https://api.twitter.com/oauth/authorize',
+      'https://api.twitter.com/oauth/access_token',
+      SignatureMethods.hmacSha1);
   MockOAuth1() {
-    Authorization(ClientCredentials(kClientId, kClientSecret), null);
+    Authorization(
+      ClientCredentials(kClientId, kClientSecret),
+      _platform
+    );
   }
 }
 
