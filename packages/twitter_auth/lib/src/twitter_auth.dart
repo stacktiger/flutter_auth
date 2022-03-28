@@ -2,7 +2,6 @@ import 'package:oauth1/oauth1.dart' as oauth1;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_auth_core/flutter_auth_core.dart';
-import 'package:meta/meta.dart' show required, visibleForTesting;
 import 'package:oauth1/oauth1.dart';
 import 'package:twitter_auth/src/utils/exception.dart';
 import 'utils/constants.dart';
@@ -25,13 +24,13 @@ class TwitterAuth extends FlutterAuth {
   final bool clearCache;
 
   /// The user agent to be used for the Webview
-  final String userAgent;
+  final String? userAgent;
 
-  ClientCredentials _clientCredentials;
+  late ClientCredentials _clientCredentials;
 
   @visibleForTesting
   // ignore: public_member_api_docs
-  Authorization authorization;
+  late Authorization authorization;
 
   static final dynamic _client = oauth1.Platform(
       kApiEndpointRequestToken,
@@ -41,15 +40,18 @@ class TwitterAuth extends FlutterAuth {
 
   /// Returns an instance of [TwitterAuth].
   TwitterAuth(
-      {@required this.clientId,
-      @required this.clientSecret,
-      @required this.callbackUrl,
+      {required this.clientId,
+      required this.clientSecret,
+      required this.callbackUrl,
       this.clearCache = false,
-      this.userAgent}) {
-    assert(clientId != null && clientId.isNotEmpty,
-        'Consumer key may not be null or empty.');
-    assert(clientSecret != null && clientSecret.isNotEmpty,
-        'Consumer secret may not be null or empty.');
+      this.userAgent})
+      : super(
+            clientId: clientId,
+            clientSecret: clientSecret,
+            callbackUrl: callbackUrl) {
+    assert(clientId.isNotEmpty, 'Consumer key may not be null or empty.');
+    assert(
+        clientSecret.isNotEmpty, 'Consumer secret may not be null or empty.');
     _clientCredentials = ClientCredentials(clientId, clientSecret);
   }
 

@@ -34,20 +34,25 @@ class GithubAuth extends FlutterAuth {
   final bool clearCache;
 
   /// The user agent to be used for the Webview
-  final String userAgent;
+  final String? userAgent;
 
   @visibleForTesting
   // ignore: public_member_api_docs
   final client = http.Client();
 
   GithubAuth(
-      {@required this.clientId,
-      @required this.clientSecret,
-      @required this.callbackUrl,
+      {required this.clientId,
+      required this.clientSecret,
+      required this.callbackUrl,
       this.scope = "user,gist,user:email",
       this.allowSignUp = true,
       this.clearCache = false,
-      this.userAgent});
+      this.userAgent})
+      : super(
+          clientId: clientId,
+          clientSecret: clientSecret,
+          callbackUrl: callbackUrl,
+        );
 
   @visibleForTesting
   @override
@@ -55,7 +60,7 @@ class GithubAuth extends FlutterAuth {
   Future<FlutterAuthResult> loginComplete(Uri authorizedResultUrl) async {
     FlutterAuthResult result;
     // exchange for access token
-    String code = authorizedResultUrl.queryParameters[kCodeConstant];
+    String? code = authorizedResultUrl.queryParameters[kCodeConstant];
 
     if (code == null || code.isEmpty) {
       throw FlutterAuthException(
@@ -78,7 +83,8 @@ class GithubAuth extends FlutterAuth {
 
   @visibleForTesting
   Future<String> getAccessToken(String code) async {
-    var response = await client.post("$kApiEndpointAccessToken", headers: {
+    http.Response response =
+        await client.post(Uri.parse(kApiEndpointAccessToken), headers: {
       kAcceptConstant: kAcceptJsonConstant,
     }, body: {
       kClientIdConstant: clientId,
@@ -87,7 +93,7 @@ class GithubAuth extends FlutterAuth {
     });
 
     if (response.statusCode == 200) {
-      var body = json.decode(utf8.decode(response.bodyBytes));
+      Map<String, dynamic> body = json.decode(utf8.decode(response.bodyBytes));
       var error = body[kErrorConstant];
       if (error != null) {
         throw GithubAPIError.parse(body);

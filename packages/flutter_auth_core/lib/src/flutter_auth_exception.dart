@@ -9,10 +9,10 @@ class FlutterAuthException {
   FlutterAuthException({this.code, this.message, this.details});
 
   /// The error code
-  final FlutterAuthExceptionCode code;
+  final FlutterAuthExceptionCode? code;
 
   /// Description of the error thrown
-  final String message;
+  final String? message;
 
   /// Additional details of the error thrown
   final dynamic details;

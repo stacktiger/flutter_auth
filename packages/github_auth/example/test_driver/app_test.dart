@@ -1,9 +1,8 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_driver/flutter_driver.dart';
-import 'package:test/test.dart';
-
 void main() {
   group('Github Auth App', () {
-    final titleTextFinder = find.byValueKey('title');
+    final titleTextFinder = find.text('title');
 
     FlutterDriver driver;
 

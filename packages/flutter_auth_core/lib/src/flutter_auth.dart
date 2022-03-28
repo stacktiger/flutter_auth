@@ -1,11 +1,7 @@
-import 'package:flutter_auth_core/src/utils/flutter_auth_exception_code.dart';
-import 'package:flutter_auth_core/src/utils/flutter_auth_exception_message.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
-import 'utils/flutter_auth_webview.dart';
-import 'package:meta/meta.dart' show required, visibleForOverriding;
+import 'package:meta/meta.dart' show visibleForOverriding;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_auth_core/flutter_auth_core.dart';
 
 // ignore: public_member_api_docs
@@ -14,21 +10,19 @@ class FlutterAuth {
   final String clientSecret;
   final String callbackUrl;
   final bool clearCache;
-  final String userAgent;
+  final String? userAgent;
 
   /// Returns an instance of [FlutterAuth].
-  FlutterAuth(
-      {@required this.clientId,
-      @required this.clientSecret,
-      @required this.callbackUrl,
-      this.clearCache = false,
-      this.userAgent}) {
-    assert(clientId != null && clientId.isNotEmpty,
-        'ClientId may not be null or empty.');
-    assert(clientSecret != null && clientSecret.isNotEmpty,
-        'ClientSecret may not be null or empty.');
-    assert(callbackUrl != null && callbackUrl.isNotEmpty,
-        'CallbackUrl may not be null or empty.');
+  FlutterAuth({
+    required this.clientId,
+    required this.clientSecret,
+    required this.callbackUrl,
+    this.clearCache = false,
+    this.userAgent,
+  }) {
+    assert(clientId.isNotEmpty, 'ClientId may not be empty.');
+    assert(clientSecret.isNotEmpty, 'ClientSecret may not be empty.');
+    assert(callbackUrl.isNotEmpty, 'CallbackUrl may not be empty.');
   }
 
   @visibleForOverriding
@@ -50,8 +44,9 @@ class FlutterAuth {
   @visibleForTesting
   // ignore: public_member_api_docs
   Future<FlutterAuthResult> openLoginPageWithWebview(
-      BuildContext context, String url) async {
-    assert(context != null && url != null && url.isNotEmpty);
+      BuildContext? context, String url) async {
+    assert(context != null);
+    assert(url.isNotEmpty);
     var authorizedResult;
 
     try {
@@ -73,14 +68,17 @@ class FlutterAuth {
 
   @visibleForTesting
   // ignore: public_member_api_docs
-  Future<dynamic> navigateToWebview(BuildContext context, String url) async {
-    return Navigator.of(context).push(MaterialPageRoute(
+  Future<dynamic> navigateToWebview(BuildContext? context, String url) async {
+    return Navigator.of(context!).push(
+      MaterialPageRoute(
         builder: (context) => FlutterAuthWebview(
-              url: url,
-              redirectUrl: callbackUrl,
-              userAgent: userAgent,
-              clearCache: clearCache,
-            )));
+          url: url,
+          redirectUrl: callbackUrl,
+          userAgent: userAgent,
+          clearCache: clearCache,
+        ),
+      ),
+    );
   }
 
   @visibleForTesting

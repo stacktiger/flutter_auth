@@ -14,7 +14,7 @@ const kAuthorizedResultUrl = 'test-authorized-result-url';
 BuildContext kMockBuildContext = MockBuildContext();
 
 void main() {
-  TestFlutterAuth testFlutterAuth;
+  late TestFlutterAuth testFlutterAuth;
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
@@ -45,31 +45,31 @@ void main() {
       try {
         FlutterAuth(
             callbackUrl: kCallbackUrl,
-            clientId: null,
+            clientId: '',
             clientSecret: kClientSecret);
       } on AssertionError catch (e) {
-        expect(e.message, 'ClientId may not be null or empty.');
+        expect(e.message, 'ClientId may not be empty.');
       }
     });
 
     test('throws AssertionError if clientSecret is null', () {
       try {
         FlutterAuth(
-            callbackUrl: kCallbackUrl, clientId: kClientId, clientSecret: null);
+            callbackUrl: kCallbackUrl, clientId: kClientId, clientSecret: '');
       } on AssertionError catch (e) {
-        expect(e.message, 'ClientSecret may not be null or empty.');
+        expect(e.message, 'ClientSecret may not be empty.');
       }
     });
 
     test('throws AssertionError if callbackUrl is null', () {
       try {
         FlutterAuth(
-          callbackUrl: null,
+          callbackUrl: '',
           clientId: kClientId,
           clientSecret: kClientSecret,
         );
       } on AssertionError catch (e) {
-        expect(e.message, 'CallbackUrl may not be null or empty.');
+        expect(e.message, 'CallbackUrl may not be empty.');
       }
     });
   });
@@ -111,7 +111,7 @@ void main() {
     test('throws AssertionError if url is null', () {
       expect(
           () =>
-              testFlutterAuth.openLoginPageWithWebview(kMockBuildContext, null),
+              testFlutterAuth.openLoginPageWithWebview(kMockBuildContext, ''),
           throwsAssertionError);
     });
 
@@ -135,7 +135,7 @@ class TestFlutterAuth extends FlutterAuth {
             userAgent: kUserAgent);
 
   @override
-  navigateToWebview(BuildContext context, String url) {
+  navigateToWebview(BuildContext? context, String url) {
     return Future.value('mock-url');
   }
 

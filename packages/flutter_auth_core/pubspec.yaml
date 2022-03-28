@@ -4,19 +4,19 @@ version: 0.0.4
 homepage: https://github.com/StackTiger/flutter_auth/tree/master/packages/flutter_auth_core
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  quiver: ">=2.0.0 <3.0.0"
-  meta: ^1.1.8
-  url_launcher: ^5.5.0
-  http: ^0.12.2
-  oauth1: ^1.0.4
-  flutter_webview_plugin: ^0.3.11
+  flutter_webview_plugin: ^0.4.0
+  http: ^0.13.4
+  meta: ^1.7.0
+  oauth1: ^2.0.0
+  quiver: ^3.0.1+1
+  url_launcher: ^6.0.20
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^4.1.1
+  mockito: ^5.1.0

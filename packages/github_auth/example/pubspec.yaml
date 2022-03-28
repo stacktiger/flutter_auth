@@ -23,4 +23,4 @@ flutter:
   uses-material-design: true
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"

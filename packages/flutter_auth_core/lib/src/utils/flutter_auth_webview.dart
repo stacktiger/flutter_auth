@@ -9,13 +9,13 @@ class FlutterAuthWebview extends StatefulWidget {
   final String redirectUrl;
   final bool clearCache;
   final String title;
-  final String userAgent;
+  final String? userAgent;
 
   // ignore: public_member_api_docs
   const FlutterAuthWebview(
-      {Key key,
-      @required this.url,
-      @required this.redirectUrl,
+      {Key? key,
+      required this.url,
+      required this.redirectUrl,
       this.userAgent,
       this.clearCache = true,
       this.title = ""})
@@ -29,9 +29,9 @@ class _FlutterAuthWebviewState extends State<FlutterAuthWebview> {
   final FlutterWebviewPlugin _wv = FlutterWebviewPlugin();
 
   // On urlChanged stream
-  StreamSubscription<String> _onUrlChanged;
+  late StreamSubscription<String> _onUrlChanged;
 
-  StreamSubscription<WebViewHttpError> _onHttpError;
+  late StreamSubscription<WebViewHttpError> _onHttpError;
 
   static const String _userAgentMacOSX =
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36";

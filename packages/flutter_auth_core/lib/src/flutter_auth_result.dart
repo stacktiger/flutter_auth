@@ -8,10 +8,10 @@ class FlutterAuthResult {
   FlutterAuthResult({this.token, this.secret}) : assert(token != null);
 
   /// The token obtained after the user has successfully logged in.
-  final String token;
+  final String? token;
 
   /// The secret obtained after the user has successfully logged in.
-  final String secret;
+  final String? secret;
 
   /// Returns the current instance as a [Map].
   Map<String, dynamic> get asMap {
